@@ -5,6 +5,8 @@ import com.andre.database.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.util.List;
 
 
@@ -15,6 +17,9 @@ public class EntityService {
     UserRepository repository;
 
     public User createUser(User user) {
+        if (user.getCreationDate() == null) {
+            user.setCreationDate(Date.from(Instant.now()));
+        }
         return repository.save(user);
     }
 
