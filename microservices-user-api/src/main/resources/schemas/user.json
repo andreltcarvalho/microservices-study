@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "User",
+  "description": "An User",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique identifier for an user",
+      "type": "integer"
+    },
+    "name": {
+      "description": "Name of the user",
+      "type": "string"
+    },
+    "cpf": {
+      "description": "CPF of the user",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "price"
+  ]
+}

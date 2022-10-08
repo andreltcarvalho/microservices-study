@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  database:
+    build: "."
+    depends_on:
+      - mongodb
+    environment:
+      - SPRING_DATASOURCE_IP=mongodb
+      - SPRING_DATASOURCE_PORT=27017
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_DATABASE=user_db
+    image: database
+    ports:
+      - "8080:8080"
+    networks:
+      - "microservices-network"
+    restart: always
+    links:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - "microservices-network"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    restart: always
+    volumes:
+      - mongodb:/data/db
+
+networks:
+  microservices-network:
+    external: true
+    name: microservices-network
+
+volumes:
+  mongodb:
+    driver: local
