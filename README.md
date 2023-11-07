@@ -1,35 +1,35 @@
-# microservices-study
+# Estudo de Microsserviços com Kafka e MongoDB
 
-Study for Microservices using Docker and Kafka
+
 
 # Kafka
 
-Enter the kafka container with command:
+Comando para entrar no container do Kafka
 
 ```shell
 docker exec -it <containerId> bash
 ```
 
-### Create Kafka topic
+### Criar tópico no Kafka
 
 ```shell
- kafka-topics --create --topic EXEMPLO_TOPICO --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server localhost:9092
+ kafka-topics --create --topic MICROSERVICES_TOPIC --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server localhost:9092
 ```
 
-### Check if topic is OK
+### Checar se o tópico está OK
 
 ```shell
-docker-compose exec kafka kafka-topics --describe --topic EXEMPLO_TOPICO --bootstrap-server localhost:9092
+docker-compose exec kafka kafka-topics --describe --topic MICROSERVICES_TOPIC --bootstrap-server localhost:9092
 ```
 
-### Send messages to topic on Kafka
+### Enviar mensagens para o tópico
 
 ```shell
-kafka-console-producer --request-required-acks 1 --broker-list kafka:29092 --topic EXEMPLO_TOPICO
+kafka-console-producer --request-required-acks 1 --broker-list kafka:29092 --topic MICROSERVICES_TOPIC
 ```
 
-### Read Kafka topic messages
+### Ler mensagens do tópico
 
 ```shell
-kafka-console-consumer --bootstrap-server kafka:29092 --topic EXEMPLO_TOPICO --from-beginning --max-messages 100
+kafka-console-consumer --bootstrap-server kafka:29092 --topic MICROSERVICES_TOPIC --from-beginning --max-messages 100
 ```
